@@ -14,3 +14,14 @@ after_success:
   - docker build -t nagasaim227/multi-nginx ./nginx
   - docker build -t nagasaim227/multi-server ./server
   - docker build -t nagasaim227/multi-worker ./worker
+
+  # Log in to the docker cli
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # Take those images and push them to docker hub
+
+  - docker push nagasaim227/multi-client
+  - docker push nagasaim227/multi-nginx
+  - docker push nagasaim227/multi-server  
+  - docker push nagasaim227/multi-worker
